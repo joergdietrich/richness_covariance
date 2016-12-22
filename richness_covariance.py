@@ -39,7 +39,7 @@ richness_edges = [5, 10, 14, 20, 30, 45, 60, np.inf]
 z_edges = [0.2, 0.35, 0.5, 0.65]
 
 # \Delta\Sigma profile edges. The bin location should be approximated as the
-# circumference weighted radius
+# area weighted radius
 delta_sigma_edges = np.logspace(np.log10(0.02), np.log10(30), 16) * u.Mpc
 
 # cosmology
