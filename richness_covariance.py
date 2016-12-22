@@ -143,8 +143,7 @@ def main():
             fname = "output/richness_cov_z{:d}_l{:d}.pkl".format(i, j)
             with open(fname, "wb") as f:
                 pickle.dump(cov, f)
-            break
-        break
+
 
 if __name__ == "__main__":
     main()
