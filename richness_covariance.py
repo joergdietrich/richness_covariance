@@ -38,9 +38,16 @@ richness_edges = [5, 10, 14, 20, 30, 45, 60, np.inf]
 # redshift bin edges
 z_edges = [0.2, 0.35, 0.5, 0.65]
 
+
 # \Delta\Sigma profile edges. The bin location should be approximated as the
 # area weighted radius
-delta_sigma_edges = np.logspace(np.log10(0.02), np.log10(30), 16) * u.Mpc
+def get_delta_sigma_edges():
+    m, M = 0.2, 30
+    N = 13
+    l = N / np.log(M / m)
+    delta_sigama_edges = m * np.exp(np.arange(-2, N + 1) / l)
+    return delta_sigama_edges
+
 
 # cosmology
 cosmo = astropy.cosmology.FlatLambdaCDM(70, 0.3)
@@ -92,6 +99,7 @@ def get_delta_sigma(m200, c200, zl, r):
 
 def compute_delta_sigma_profiles(tab):
     z = tab[redshift_key]
+    delta_sigma_edges = get_delta_sigma_edges()
     mass = mass_scaling(tab[richness_key], z)
     print("  Computing cluster concentrations")
     c = compute_concentrations(mass, tab[redshift_key])
